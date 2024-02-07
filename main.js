@@ -1,35 +1,21 @@
-var http = require("http");
-var fs = require('fs');
+const http = require("http");
+const fs = require('fs');
+const ethers = require('ethers');
 
+// Ethereum node URL
+const rpcUrl = 'https://sepolia.blast.io'; // Replace 'YOUR_RPC_URL' with the actual RPC URL
+
+// Initialize the provider
+const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+
+// Contract ABI and address
+const contractABI = [{"type":"constructor","inputs":[{"name":"_token","type":"address","internalType":"contract StableCoinToken"},{"name":"_oracle","type":"address","internalType":"contract PriceConsumerV3"},{"name":"_initialOwner","type":"address","internalType":"address"}],"stateMutability":"nonpayable"},{"type":"function","name":"deposit","inputs":[{"name":"amountToDeposit","type":"uint256","internalType":"uint256"}],"outputs":[],"stateMutability":"payable"},{"type":"function","name":"estimateCollateralAmount","inputs":[{"name":"repaymentAmount","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"collateralAmount","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"estimateTokenAmount","inputs":[{"name":"depositAmount","type":"uint256","internalType":"uint256"}],"outputs":[{"name":"tokenAmount","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"getEthUSDPrice","inputs":[],"outputs":[{"name":"","type":"uint256","internalType":"uint256"}],"stateMutability":"view"},{"type":"function","name":"getOracle","inputs":[],"outputs":[{"name":"","type":"address","internalType":"address"}],"stateMutability":"view"},{"type":"function","name":"getToken","inputs":[],"outputs":[{"name":"","type":"address","internalType":"address"}],"stateMutability":"view"},{"type":"function","name":"getVault","inputs":[{"name":"userAddress","type":"address","internalType":"address"}],"outputs":[{"name":"vault","type":"tuple","internalType":"struct IVault.Vault","components":[{"name":"collateralAmount","type":"uint256","internalType":"uint256"},{"name":"debtAmount","type":"uint256","internalType":"uint256"}]}],"stateMutability":"view"},{"type":"function","name":"owner","inputs":[],"outputs":[{"name":"","type":"address","internalType":"address"}],"stateMutability":"view"},{"type":"function","name":"renounceOwnership","inputs":[],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"setOracle","inputs":[{"name":"_oracle","type":"address","internalType":"address"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"token","inputs":[],"outputs":[{"name":"","type":"address","internalType":"contract StableCoinToken"}],"stateMutability":"view"},{"type":"function","name":"transferOwnership","inputs":[{"name":"newOwner","type":"address","internalType":"address"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"function","name":"withdraw","inputs":[{"name":"repaymentAmount","type":"uint256","internalType":"uint256"}],"outputs":[],"stateMutability":"nonpayable"},{"type":"event","name":"Deposit","inputs":[{"name":"collateralDeposited","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"amountMinted","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"event","name":"OwnershipTransferred","inputs":[{"name":"previousOwner","type":"address","indexed":true,"internalType":"address"},{"name":"newOwner","type":"address","indexed":true,"internalType":"address"}],"anonymous":false},{"type":"event","name":"Withdraw","inputs":[{"name":"collateralWithdrawn","type":"uint256","indexed":false,"internalType":"uint256"},{"name":"amountBurned","type":"uint256","indexed":false,"internalType":"uint256"}],"anonymous":false},{"type":"error","name":"OwnableInvalidOwner","inputs":[{"name":"owner","type":"address","internalType":"address"}]},{"type":"error","name":"OwnableUnauthorizedAccount","inputs":[{"name":"account","type":"address","internalType":"address"}]}];
+const contractAddress = '0xb77E90095E9F6219DE885D331f517a3DED958950';
 
 http.createServer(function (request, response) {
-   // Send the HTTP header 
-   // HTTP Status: 200 : OK
-   // Content Type: text/plain
    response.writeHead(200, {'Content-Type': 'text/html'});
-   var file = fs.createReadStream('index.html');
+   const file = fs.createReadStream('index.html');
    file.pipe(response);
-   // Send the response ody as "Hello World"
-  // response.end('Hello World\n');
 }).listen(8081);
 
-// Console will print the message
 console.log('Server running at http://127.0.0.1:8081/');
-
-
-var Web3 = require('web3');
-
-var rpcUrl = 'https://sepolia.blast.io'; // Replace 'YOUR_RPC_URL' with the actual RPC URL
-var web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl));
-
-web3.eth.getAccounts(console.log);
-
-
-var contract = new web3.eth.Contract(jsonInterface, address);
-
-
-//get contract
-//deposit
-//withdraw
-//Display Ether Price
-//Display Vault Amount
