@@ -13,4 +13,8 @@ docs/
 # Dotenv file
 .env
 
+# Ignore macOS Finder files
+.DS_Store
+
+# Node modules
 node_modules/

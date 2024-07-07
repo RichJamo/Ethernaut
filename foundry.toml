@@ -1,6 +1,14 @@
-[profile.default]
+[src]
 src = "src"
 out = "out"
 libs = ["lib"]
+optimizer = true
+optimizer_runs = 200
 
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+[profile.default]
+# No need to repeat src, out, libs, optimizer, optimizer_runs unless different
+
+[profile.sepolia]
+rpc_url = "https://sepolia.infura.io/v3/1a34a37dbf4e44409187911e6573a844"
+# Other specific configurations for the sepolia profile
+
