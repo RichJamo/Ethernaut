@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./interfaces/ICoinFlip.sol";
+import "../interfaces/ICoinFlip.sol";
 
 contract BeatCoinFlip {
     ICoinFlip public coinFlipContract;

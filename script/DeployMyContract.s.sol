@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/Script.sol";
-import "../src/BeatCoinFlip.sol";
+import "../src/implementation/BeatCoinFlip.sol";
 
 contract DeployMyContract is Script {
     function run() external {
