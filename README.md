@@ -1,66 +1,16 @@
-## Foundry
+## Ethernaut Challenges
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**These are my solution contracts to the Ethernaut challenges**
 
-Foundry consists of:
+(The first couple of challenges are skipped because they are simple and don't require contracts)
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Coin Flip:
+The contract exploits the fact that the hash of the blocknumber can be known by another contract on the chain and used to predict the (supposedly random) coin flip
 
-## Documentation
+Telephone:
+Here we exploit the fact that if we get one contract (contract 1) to call another (contract 2), then tx.origin will be the address of the caller of contract1 (in this case an EOA), whereas msg.sender will be the address of contract1.
 
-https://book.getfoundry.sh/
+Token:
+Here we exploit the fact that in Solidity versions before 0.7.0, overflows weren't checked (you had to use SafeMath as an import), so we can overflow the balance check function to make it possible to transfer tokens we don't own to ourselves
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Delegation:
