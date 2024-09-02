@@ -11,6 +11,10 @@ contract BeatNaughtCoin {
     }
 
     function beatNaught() public {
-        naughtCoin.transferFrom(msg.sender, address(0), 1000000 ether);
+        naughtCoin.transferFrom(
+            0xAB75E66C63307396FE8456Ea7c42CBBF3CF36298,
+            0xf9B0404C82f148B17032511110474d59Ab612bFb,
+            1000000 ether
+        );
     }
 }
